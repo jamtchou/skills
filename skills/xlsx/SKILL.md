@@ -78,7 +78,7 @@ A user may ask you to create, edit, or analyze the contents of an .xlsx file. Yo
 ### Data analysis with pandas
 For data analysis, visualization, and basic operations, use **pandas** which provides powerful data manipulation capabilities:
 
-```python
+```py
 import pandas as pd
 
 # Read Excel
@@ -101,7 +101,7 @@ df.to_excel('output.xlsx', index=False)
 **Always use Excel formulas instead of calculating values in Python and hardcoding them.** This ensures the spreadsheet remains dynamic and updateable.
 
 ### ❌ WRONG - Hardcoding Calculated Values
-```python
+```py
 # Bad: Calculating in Python and hardcoding result
 total = df['Sales'].sum()
 sheet['B10'] = total  # Hardcodes 5000
@@ -116,7 +116,7 @@ sheet['D20'] = avg  # Hardcodes 42.5
 ```
 
 ### ✅ CORRECT - Using Excel Formulas
-```python
+```py
 # Good: Let Excel calculate the sum
 sheet['B10'] = '=SUM(B2:B9)'
 
@@ -136,7 +136,7 @@ This applies to ALL calculations - totals, percentages, ratios, differences, etc
 4. **Save**: Write to file
 5. **Recalculate formulas (MANDATORY IF USING FORMULAS)**: Use the scripts/recalc.py script
    ```bash
-   python scripts/recalc.py output.xlsx
+   py scripts/recalc.py output.xlsx
    ```
 6. **Verify and fix any errors**: 
    - The script returns JSON with error details
@@ -150,7 +150,7 @@ This applies to ALL calculations - totals, percentages, ratios, differences, etc
 
 ### Creating new Excel files
 
-```python
+```py
 # Using openpyxl for formulas and formatting
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment
@@ -179,7 +179,7 @@ wb.save('output.xlsx')
 
 ### Editing existing Excel files
 
-```python
+```py
 # Using openpyxl to preserve formulas and formatting
 from openpyxl import load_workbook
 
@@ -209,12 +209,12 @@ wb.save('modified.xlsx')
 Excel files created or modified by openpyxl contain formulas as strings but not calculated values. Use the provided `scripts/recalc.py` script to recalculate formulas:
 
 ```bash
-python scripts/recalc.py <excel_file> [timeout_seconds]
+py scripts/recalc.py <excel_file> [timeout_seconds]
 ```
 
 Example:
 ```bash
-python scripts/recalc.py output.xlsx 30
+py scripts/recalc.py output.xlsx 30
 ```
 
 The script:
@@ -263,6 +263,9 @@ The script returns JSON with error details:
 ```
 
 ## Best Practices
+
+### Python Execution
+- Always use **py** instead of `python` or `python3`
 
 ### Library Selection
 - **pandas**: Best for data analysis, bulk operations, and simple data export
