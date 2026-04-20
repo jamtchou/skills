@@ -10,23 +10,27 @@ license: Proprietary. LICENSE.txt has complete terms
 
 | Task | Guide |
 |------|-------|
-| Read/analyze content | `python -m markitdown presentation.pptx` |
+| Python execution | Always use `python` |
+| Read/analyze content | `py -m markitdown presentation.pptx` |
 | Edit or create from template | Read [editing.md](editing.md) |
 | Create from scratch | Read [pptxgenjs.md](pptxgenjs.md) |
 
 ---
+## Python Execution
+
+When executing Python, always use **python** instead of `python` or `python3`
 
 ## Reading Content
 
 ```bash
 # Text extraction
-python -m markitdown presentation.pptx
+py -m markitdown presentation.pptx
 
 # Visual overview
-python scripts/thumbnail.py presentation.pptx
+py scripts/thumbnail.py presentation.pptx
 
 # Raw XML
-python scripts/office/unpack.py presentation.pptx unpacked/
+py scripts/office/unpack.py presentation.pptx unpacked/
 ```
 
 ---
@@ -147,7 +151,7 @@ Your first render is almost never correct. Approach QA as a bug hunt, not a conf
 ### Content QA
 
 ```bash
-python -m markitdown output.pptx
+py -m markitdown output.pptx
 ```
 
 Check for missing content, typos, wrong order.
@@ -155,7 +159,7 @@ Check for missing content, typos, wrong order.
 **When using templates, check for leftover placeholder text:**
 
 ```bash
-python -m markitdown output.pptx | grep -iE "xxxx|lorem|ipsum|this.*(page|slide).*layout"
+py -m markitdown output.pptx | grep -iE "xxxx|lorem|ipsum|this.*(page|slide).*layout"
 ```
 
 If grep returns results, fix them before declaring success.
@@ -209,7 +213,7 @@ Report ALL issues found, including minor ones.
 Convert presentations to individual slide images for visual inspection:
 
 ```bash
-python scripts/office/soffice.py --headless --convert-to pdf output.pptx
+py scripts/office/soffice.py --headless --convert-to pdf output.pptx
 pdftoppm -jpeg -r 150 output.pdf slide
 ```
 
