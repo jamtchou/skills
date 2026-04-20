@@ -12,7 +12,7 @@ This guide covers essential PDF processing operations using Python libraries and
 
 ## Quick Start
 
-```python
+```py
 from pypdf import PdfReader, PdfWriter
 
 # Read a PDF
@@ -30,7 +30,7 @@ for page in reader.pages:
 ### pypdf - Basic Operations
 
 #### Merge PDFs
-```python
+```py
 from pypdf import PdfWriter, PdfReader
 
 writer = PdfWriter()
@@ -44,7 +44,7 @@ with open("merged.pdf", "wb") as output:
 ```
 
 #### Split PDF
-```python
+```py
 reader = PdfReader("input.pdf")
 for i, page in enumerate(reader.pages):
     writer = PdfWriter()
@@ -54,7 +54,7 @@ for i, page in enumerate(reader.pages):
 ```
 
 #### Extract Metadata
-```python
+```py
 reader = PdfReader("document.pdf")
 meta = reader.metadata
 print(f"Title: {meta.title}")
@@ -64,7 +64,7 @@ print(f"Creator: {meta.creator}")
 ```
 
 #### Rotate Pages
-```python
+```py
 reader = PdfReader("input.pdf")
 writer = PdfWriter()
 
@@ -79,7 +79,7 @@ with open("rotated.pdf", "wb") as output:
 ### pdfplumber - Text and Table Extraction
 
 #### Extract Text with Layout
-```python
+```py
 import pdfplumber
 
 with pdfplumber.open("document.pdf") as pdf:
@@ -89,7 +89,7 @@ with pdfplumber.open("document.pdf") as pdf:
 ```
 
 #### Extract Tables
-```python
+```py
 with pdfplumber.open("document.pdf") as pdf:
     for i, page in enumerate(pdf.pages):
         tables = page.extract_tables()
@@ -100,7 +100,7 @@ with pdfplumber.open("document.pdf") as pdf:
 ```
 
 #### Advanced Table Extraction
-```python
+```py
 import pandas as pd
 
 with pdfplumber.open("document.pdf") as pdf:
@@ -121,7 +121,7 @@ if all_tables:
 ### reportlab - Create PDFs
 
 #### Basic PDF Creation
-```python
+```py
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
@@ -140,7 +140,7 @@ c.save()
 ```
 
 #### Create PDF with Multiple Pages
-```python
+```py
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
 from reportlab.lib.styles import getSampleStyleSheet
@@ -171,7 +171,7 @@ doc.build(story)
 **IMPORTANT**: Never use Unicode subscript/superscript characters (₀₁₂₃₄₅₆₇₈₉, ⁰¹²³⁴⁵⁶⁷⁸⁹) in ReportLab PDFs. The built-in fonts do not include these glyphs, causing them to render as solid black boxes.
 
 Instead, use ReportLab's XML markup tags in Paragraph objects:
-```python
+```py
 from reportlab.platypus import Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
 
@@ -231,7 +231,7 @@ pdftk input.pdf rotate 1east output rotated.pdf
 ## Common Tasks
 
 ### Extract Text from Scanned PDFs
-```python
+```py
 # Requires: pip install pytesseract pdf2image
 import pytesseract
 from pdf2image import convert_from_path
@@ -250,7 +250,7 @@ print(text)
 ```
 
 ### Add Watermark
-```python
+```py
 from pypdf import PdfReader, PdfWriter
 
 # Create watermark (or load existing)
@@ -277,7 +277,7 @@ pdfimages -j input.pdf output_prefix
 ```
 
 ### Password Protection
-```python
+```py
 from pypdf import PdfReader, PdfWriter
 
 reader = PdfReader("input.pdf")
